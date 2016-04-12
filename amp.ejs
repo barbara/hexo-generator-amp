@@ -62,7 +62,12 @@
 		}
 	</script>
   <% var locale = config.locale;
-     var lang = config.language; %>
+     var lang = config.language;
+     var prefix = config.url + '/..';
+     if (lang !== 'en') {
+      prefix = prefix + '/..';
+     }
+  %>
 	<% if (cssTxt != ""){ %>
 	<style amp-custom>
 		<%- cssTxt %>
@@ -273,7 +278,7 @@
   	<div id="container" class="resources">
       <nav id="small-nav" role="navigation" class="blue-bg header navbar-fixed-top visible-lg-block">
         <div class="logo">
-          <a id="header-logo" href="/">
+          <a id="header-logo" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/">
             <amp-img src="../../images/minsh_letters.png" width="97" height="30"></amp-img>
           </a>
         </div>
@@ -283,19 +288,19 @@
           </li>
           <!-- pills -->
           <li class="pill hidden-xs">
-            <a id="header-features" class="white-text" href="../../#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
+            <a id="header-features" class="white-text" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
-            <a id="header-pricing" class="white-text" href="../../<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
+            <a id="header-pricing" class="white-text" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
-            <a id="header-clients" class="white-text" href="../../<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
+            <a id="header-clients" class="white-text" href="<%= prefix %>/<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
-            <a id="header-contact" class="white-text" href="../../<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
+            <a id="header-contact" class="white-text" href="<%= prefix %>/<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
-          <a id="header-try-now" href="../../#<%= locale['tryItNowUrl'][lang] %>" class="header-cta"><%= locale['Try a demo'][lang] %></a>
+          <a id="header-try-now" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/#<%= locale['tryItNowUrl'][lang] %>" class="header-cta"><%= locale['Try a demo'][lang] %></a>
           </li>
         </ul>
       </nav>
@@ -340,7 +345,7 @@
                   <ul class="tag-list">
                     <% post.tags.each(function(tag){ %>
                     <li class="tag-list-item">
-                      <a class="tag-list-link" href="<%= tag.path %>">
+                      <a class="tag-list-link" href="<%= config.url %>/<%= tag.path %>">
                         <%= tag.name %>
                       </a>
                     </li>
@@ -383,76 +388,49 @@
           </li>
         </ul>
         <ul>
-          <h3>Product</h3>
+          <h3><%= locale['Product'][lang] %></h3>
           <li>
-            <a id="footer-features" href="../../#features">Features</a>
+            <a id="footer-features" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
           </li>
           <li>
-            <a id="footer-pricing" href="../../pricing.html">Pricing</a>
+            <a id="footer-pricing" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
           </li>
           <li>
-            <a id="footer-clients" href="../../clients.html">Clients</a>
+            <a id="footer-clients" href="<%= prefix %>/<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
           </li>
         </ul>
         <ul>
-          <h3>Resources</h3>
-          <li><a id="footer-community" href="../../community-building">Community building</a></li>
-          <li><a id="footer-using" href="../../using-your-app">Using your Minsh app</a></li>
-          <li><a id="footer-news" href="../../news">Minsh news</a></li>
+          <h3><%= locale['Resources'][lang] %></h3>
+          <li><a id="footer-community" href="<%= prefix %>/<%= locale['communityBuildingUrl'][lang] %>"><%= locale['Community building'][lang] %></a></li>
+          <li><a id="footer-using" href="<%= prefix %>/<%= locale['usingYourAppUrl'][lang] %>"><%= locale['Using your Minsh app'][lang] %></a></li>
+          <li><a id="footer-news" href="<%= prefix %>/<%= locale['newsUrl'][lang] %>"><%= locale['Minsh news'][lang] %></a></li>
         </ul>
         <ul>
-          <h3>About</h3>
+          <h3><%= locale['About'][lang] %></h3>
           <li>
-            <a id="footer-about" href="../../about.html">Team</a>
+            <a id="footer-about" href="<%= prefix %>/<%= locale['aboutUrl'][lang] %>.html"><%= locale['Team'][lang] %></a>
           </li>
           <li>
-            <a id="footer-contact">Contact</a>
+            <a id="footer-contact" href="<%= prefix %>/<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
           </li>
           <li>
-            <a id="footer-pr" href="../../minsh_pr.pdf">Press Release</a>
+            <a id="footer-pr" href="<%= prefix %>/<%= locale['PRUrl'][lang] %>"><%= locale['Press Release'][lang] %></a>
           </li>
         </ul>
         <ul>
           <h3>Language</h3>
           <li>
-            <a href="../../">EN</a>
+            <a href="<%= locale['homeUrl']['en'] %>">EN</a>
           </li>
           <li>
-            <a href="../../fr">FR</a>
+            <a href="<%= locale['homeUrl']['fr'] %>">FR</a>
           </li>
           <li>
-            <a href="../../pt_BR">PT (BR)</a>
+            <a href="https://minsh.com/pt_BR">PT(BR)</a>
           </li>
         </ul>
-      </div>
-    </div>
-		
-			<div class="site-author-info">
-		
-				<% if (config.authorDetail && config.authorDetail.avatar && config.authorDetail.avatar.path && config.authorDetail.avatar.width && config.authorDetail.avatar.height ){ %>
-				<div class="gravatar-wrapper">
-					<div class="gravatar-area">
-						<amp-img alt="gravatar" class="circle responsive-img" src="<%= config.authorDetail.avatar.path %>" width="<%= config.authorDetail.avatar.width %>" height="<%= config.authorDetail.avatar.height %>"></amp-img>
-					</div>
-				</div>
-				<% } %>
-				
-				<div>
-					<h6 class="authorCap"><%= config.author %>&nbsp;
-						<% if (config.authorDetail && config.authorDetail.authorReading){ %>
-						<span class="authorReading">(<%= config.authorDetail.authorReading %>)</span>
-						<% } %>
-					</h6>
-					<% if (config.authorDetail && config.authorDetail.description){ %>
-					<p class="site-author-desc">
-						<%= config.authorDetail.description %>
-					</p>
-					<% } %>
-				</div>
-				
 			</div>
-		</footer>
+		</div>
 	</div>
-  	
   </body>
 </html>
