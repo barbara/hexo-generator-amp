@@ -34,8 +34,6 @@
 			    "@type":"WebPage",
 			    "@id":"<%= config.url %>/<%= post.path %>"
 			},
-			"datePublished": "<%= post.date.toISOString() %>",
-			"dateModified": "<%= post.updated.toISOString() %>",
 			<% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height){ %>
 			"image": {
 				"@type": "ImageObject",
@@ -63,6 +61,8 @@
 			}
 		}
 	</script>
+  <% var locale = config.locale;
+     var lang = config.language; %>
 	<% if (cssTxt != ""){ %>
 	<style amp-custom>
 		<%- cssTxt %>
@@ -83,47 +83,231 @@
 		    "trackPageview": {
 		      "on": "visible",
 		      "request": "pageview"
-		    }
+		    },
+        "trackClickOnHeaderLogo": {
+          "selector": "#header-logo",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click logo"
+          } 
+        },
+        "trackClickOnHeaderFeatures": {
+          "selector": "#header-features",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click features"
+          } 
+        },
+        "trackClickOnHeaderPricing": {
+          "selector": "#header-pricing",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click pricing"
+          }
+        },
+        "trackClickOnHeaderClients": {
+          "selector": "#header-clients",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click clients"
+          } 
+        },
+        "trackClickOnHeaderContact": {
+          "selector": "#header-contact",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click contact"
+          } 
+        },
+        "trackClickOnHeaderTryNow": {
+          "selector": "#header-try-now",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click try-now"
+          } 
+        },
+        "trackClickOnHeaderGoToMinsh": {
+          "selector": "#header-go-to-minsh",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click go-to-minsh"
+          } 
+        },
+        "trackClickOnFooterHello": {
+          "selector": "#footer-hello",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click hello@minsh.com"
+          } 
+        },
+        "trackClickOnFooterFeatures": {
+          "selector": "#footer-features",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click features"
+          } 
+        },
+        "trackClickOnFooterPricing": {
+          "selector": "#footer-pricing",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click pricing"
+          } 
+        },
+        "trackClickOnFooterClients": {
+          "selector": "#footer-clients",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click clients"
+          } 
+        },
+        "trackClickOnFooterContact": {
+          "selector": "#footer-contact",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click contact"
+          } 
+        },
+        "trackClickOnFooterAbout": {
+          "selector": "#footer-about",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click about"
+          } 
+        },
+        "trackClickOnFooterPR": {
+          "selector": "#footer-pr",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click PR"
+          } 
+        },
+        "trackClickOnFooterCommunityBuilding": {
+          "selector": "#footer-community",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click community building"
+          } 
+        },
+        "trackClickOnFooterNews": {
+          "selector": "#footer-news",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click news"
+          } 
+        },
+        "trackClickOnFooterUsingYourApp": {
+          "selector": "#footer-using",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "footer",
+            "eventAction": "click",
+            "eventLabel": "footer click using your app"
+          } 
+        },
+        "trackClickOnBlogLearnMore": {
+          "selector": "#blog-learn-more",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "blog",
+            "eventAction": "click",
+            "eventLabel": "blog click learn more"
+          } 
+        }
 		  }
 		}
 		</script>
 	</amp-analytics>
 	<% } %>
   	
-  	<div id="container">
-  	
-  		<!-- title -->
-	  	<header id="header">
-	
-	  		<% if (config.generator_amp.logo.height && config.generator_amp.logo.width && config.generator_amp.logo.height){ %>
-	  		<div class="blog-title">
-				<a href="<%- config.root %>">
-					<amp-img src="/<%= config.generator_amp.logo.path %>" width="<%= config.generator_amp.logo.width %>" height="<%= config.generator_amp.logo.height %>">
-					</amp-img>
-				</a>
-			</div>
-			<% } else { %>
-			<h1 class="blog-title blog-title-bd">
-				<a href="<%- config.root %>"><%= config.title %></a>
-			</h1>
-			<% } %>
-			
-		</header>
+  	<div id="container" class="resources">
+      <nav id="small-nav" role="navigation" class="blue-bg header navbar-fixed-top visible-lg-block">
+        <div class="logo">
+          <a id="header-logo" href="/">
+            <amp-img src="../../images/minsh_letters.png" width="97" height="30"></amp-img>
+          </a>
+        </div>
+        <ul class="nav nav-pills navbar-right">
+          <li class="pill visible-xs">
+            <a id="header-go-to-minsh" class="header-cta" href="../.."><%= locale['Go to Minsh.com'][lang] %></a>
+          </li>
+          <!-- pills -->
+          <li class="pill hidden-xs">
+            <a id="header-features" class="white-text" href="../../#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
+          </li>
+          <li class="pill hidden-xs">
+            <a id="header-pricing" class="white-text" href="../../<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
+          </li>
+          <li class="pill hidden-xs">
+            <a id="header-clients" class="white-text" href="../../<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
+          </li>
+          <li class="pill hidden-xs">
+            <a id="header-contact" class="white-text" href="../../<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
+          </li>
+          <li class="pill hidden-xs">
+          <a id="header-try-now" href="../../#<%= locale['tryItNowUrl'][lang] %>" class="header-cta"><%= locale['Try a demo'][lang] %></a>
+          </li>
+        </ul>
+      </nav>
 	  	
-	  	
-	  	<div id="main">
+	  	<div class="outer">
+        <section id="main">
 	  	
 		    <article id="<%= post.layout %>-<%= post.slug %>" class="post">
 		    	
-		    	<!-- datePublished -->
-				<footer class="entry-meta-header">
-					<span class="meta-elements date">
-						<time datetime="<%= datePublished %>" itemprop="datePublished"><%= datePublished %></time>
-					</span>
-				</footer>
-				
 				<!-- entry title -->
-				<header class="entry-header">
+				<header class="article-header">
+          <h3><a href="../"><%= config.title %></a></h3>
 					<% if (post.link){ %>
 					  <h1 itemprop="name" class="entry-title">
 					    <a class="article-title" href="<%- post.link %>" target="_blank" itemprop="url"><%= post.title %></a>
@@ -142,45 +326,106 @@
 				
 		  	</article>
 		  	
-		  	<hr class="article-devider">
+        </section>
+
+		    <aside id="sidebar">
+          <% if (post.tags.length) { %>
+          <div class="widget-wrap">
+            <div class="widget">
+              <div class="widget-header">
+                <h3 class="widget-title"><%= locale['Article topics'][lang] %></h3>
+              </div>
+              <div class="widget-content">
+                <div class="font-normal widget-subtitle">
+                  <ul class="tag-list">
+                    <% post.tags.each(function(tag){ %>
+                    <li class="tag-list-item">
+                      <a class="tag-list-link" href="<%= tag.path %>">
+                        <%= tag.name %>
+                      </a>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+          <div class="widget-wrap">
+            <div class="widget ad">
+              <div class="widget-content">
+                <div class="widget-subtitle">
+                   <%- locale['Get your dedicated messaging app for your'][lang] %> <%= locale['community'][lang] %>
+                </div>
+                <a id="blog-learn-more" class="text-right" href="<%= locale['homeUrl'][lang] %>">
+                  <button class="get-started-button">
+                    <span class="ad-button-text">
+                      <%= locale['learn more'][lang] %>
+                    </span>
+                  </button>
+                </a> 
+              </div>
+            </div>
+          </div>
+        </aside>
 		  	
-		  	<div class="homeLink">
-		  		<a href="/"><strong class="article-nav-caption">HOME</strong></a>
-		  	</div>
-		  	
-		  	<!-- article nav -->
-		  	<% if (post.prev || post.next){ %>
-			<nav id="article-nav">
-			  <% if (post.prev){ %>
-			    <a href="<%- config.root %><%- post.prev.path %>" id="article-nav-newer" class="article-nav-link-wrap">
-			      <strong class="article-nav-caption">Newer</strong>
-			      <div class="article-nav-title">
-			        <% if (post.prev.title){ %>
-			          <%= post.prev.title %>
-			        <% } else { %>
-			          (no title)
-			        <% } %>
-			      </div>
-			    </a>
-			  <% } %>
-			  <% if (post.next){ %>
-			    <a href="<%- config.root %><%- post.next.path %>" id="article-nav-older" class="article-nav-link-wrap">
-			      <strong class="article-nav-caption">Older</strong>
-			      <div class="article-nav-title">
-			        <% if (post.next.title){ %>
-			          <%= post.next.title %>
-			        <% } else { %>
-			          (no title)
-			        <% } %>
-			      </div>
-			    </a>
-			  <% } %>
-			</nav>
-			<% } %>
-			
 		</div>
-		
-		<footer id="footer">
+
+    <div class="footer">
+      <div class="inner">
+        <ul>
+          <h3>Minsh Apps</h3>
+          <li>© Minsh 2016</li>
+          <li>
+            <a id="footer-hello" href="mailto:hello@minsh.com">
+              <i class="fa fa-envelope"></i> hello@minsh.com
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <h3>Product</h3>
+          <li>
+            <a id="footer-features" href="../../#features">Features</a>
+          </li>
+          <li>
+            <a id="footer-pricing" href="../../pricing.html">Pricing</a>
+          </li>
+          <li>
+            <a id="footer-clients" href="../../clients.html">Clients</a>
+          </li>
+        </ul>
+        <ul>
+          <h3>Resources</h3>
+          <li><a id="footer-community" href="../../community-building">Community building</a></li>
+          <li><a id="footer-using" href="../../using-your-app">Using your Minsh app</a></li>
+          <li><a id="footer-news" href="../../news">Minsh news</a></li>
+        </ul>
+        <ul>
+          <h3>About</h3>
+          <li>
+            <a id="footer-about" href="../../about.html">Team</a>
+          </li>
+          <li>
+            <a id="footer-contact">Contact</a>
+          </li>
+          <li>
+            <a id="footer-pr" href="../../minsh_pr.pdf">Press Release</a>
+          </li>
+        </ul>
+        <ul>
+          <h3>Language</h3>
+          <li>
+            <a href="../../">EN</a>
+          </li>
+          <li>
+            <a href="../../fr">FR</a>
+          </li>
+          <li>
+            <a href="../../pt_BR">PT (BR)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 		
 			<div class="site-author-info">
 		
@@ -206,24 +451,6 @@
 				</div>
 				
 			</div>
-			
-			
-			<div class="copyright-tool">
-				<div class="copyright-title">
-					<span>
-					&copy; <%= copyrightDate %>&nbsp;<%= config.author || config.title %>
-					</span>
-				</div>
-				<% if (config.copyright_notice){ %>
-				<div class="copyright-notice">
-					<p>
-						<%= config.copyright_notice %>
-					</p>
-				</div>
-				<% } %>
-			</div>
-			
-			
 		</footer>
 	</div>
   	
