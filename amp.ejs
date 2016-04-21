@@ -20,36 +20,51 @@
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <% } %>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <% if (config.title === 'Community building') { %>
     <script type="application/ld+json">
+		<% if (post.excerpt){
+      var description = '';
+      var descMatch = post.excerpt.match(/\<p\>\s*\<em\>\s*(.*?)\s*\<\/em\>\s*\<\/p\>/);
+      if (descMatch) {
+        description = descMatch[1];
+      } else {
+        descMatch = post.excerpt.match(/\<p\>\s*(.*?)\s*\<\/p\>/);
+        if (descMatch) {
+          description = descMatch[1];
+        }
+      }
+	  } %>
 		{
 			"@context": "http://schema.org",
 			"@type": "BlogPosting",
 			"headline": "<%= post.title %>",
-			<% if (post.description){ %>
-			"description": "<%= post.description %>",
-			<% } else if (post.excerpt){ %>
-			"description": "<%= post.excerpt %>",
+			<% if (description !== ''){ %>
+			"description": "<%= description %>",
 			<% } %>
 			"mainEntityOfPage":{
 			    "@type":"WebPage",
 			    "@id":"<%= config.url %>/<%= post.path %>"
 			},
-			<% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height){ %>
+      "datePublished": "<%= post.date.toISOString() %>",
+			"dateModified": "<%= post.updated.toISOString() %>",
 			"image": {
 				"@type": "ImageObject",
-				"url": "<%= post.eyeCatchImage %>",
-				"width" : "<%= post.eyeCatchImageProperty.width %>",
-				"height" : "<%= post.eyeCatchImageProperty.height %>"
+				"url": "<%= config.url %>/<%= post.path %>1.png",
+				"width" : "700",
+				"height" : "370"
 			},
-			<% } %>
 			"author": {
 			    "@type": "Person",
+      <% if (post.author) { %>
+			    "name": "<%= config.authors[post.author].name %>"
+      <% } else { %>
 			    "name": "<%= config.author %>"
+      <% } %>
 			},
 			"publisher": {
 			    "@type": "Organization",
-			    "name": "<%= config.title %>"
-			    <% if (config.generator_amp.logo.height && config.generator_amp.logo.width && config.generator_amp.logo.height){ %>
+			    "name": "<%= config.author %>"
+			    <% if (config.generator_amp.logo.height && config.generator_amp.logo.width){ %>
 			    ,
 			    "logo": {
 			      "@type": "ImageObject",
@@ -61,6 +76,7 @@
 			}
 		}
 	</script>
+  <% } %>
   <% var locale = config.locale;
      var lang = config.language;
      var prefix = config.url + '/..';
