@@ -33,6 +33,11 @@
           description = descMatch[1];
         }
       }
+      // Remove anchors if any.
+      var rmAnchors = description.match(/\<a (.*?)\>\s*(.*?)\s*\<\/a\>/);
+      if (rmAnchors && rmAnchors.length > 2) {
+        description = description.replace(/\<a (.*?)\>\s*(.*?)\s*\<\/a\>/, rmAnchors[2]);
+      }
 	  } %>
 		{
 			"@context": "http://schema.org",
