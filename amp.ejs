@@ -20,7 +20,6 @@
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <% } %>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <% if (config.title === 'Community building' || config.title === 'Construire sa communauté') { %>
     <script type="application/ld+json">
 		<% if (post.excerpt){
       var description = '';
@@ -52,12 +51,14 @@
 			},
       "datePublished": "<%= post.date.toISOString() %>",
 			"dateModified": "<%= post.updated.toISOString() %>",
+      <% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height) { %>
 			"image": {
 				"@type": "ImageObject",
-				"url": "<%= config.url %>/<%= post.path %>1.png",
-				"width" : "700",
-				"height" : "370"
+				"url": "<%= post.eyeCatchImage %>",
+				"width" : "<%= post.eyeCatchImageProperty.width %>",
+				"height" : "<%= post.eyeCatchImageProperty.height %>"
 			},
+      <% } %>
 			"author": {
 			    "@type": "Person",
       <% if (post.author) { %>
@@ -81,7 +82,6 @@
 			}
 		}
 	</script>
-  <% } %>
   <% var locale = config.locale;
      var lang = config.language;
      var prefix = config.url + '/..';
