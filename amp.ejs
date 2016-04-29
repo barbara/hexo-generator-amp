@@ -54,7 +54,7 @@
       <% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height) { %>
 			"image": {
 				"@type": "ImageObject",
-				"url": "<%= post.eyeCatchImage %>",
+			  "url": "<%= config.url %>/../<%= post.eyeCatchImage %>",
 				"width" : "<%= post.eyeCatchImageProperty.width %>",
 				"height" : "<%= post.eyeCatchImageProperty.height %>"
 			},
