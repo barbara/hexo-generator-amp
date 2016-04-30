@@ -19,6 +19,13 @@
     <% if (config.generator_amp.google_analytics){ %>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <% } %>
+    <% var locale = config.locale;
+       var lang = config.language;
+      var prefix = config.url + '/..';
+      if (lang !== 'en') {
+        prefix = prefix + '/..';
+      }
+    %>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script type="application/ld+json">
 		<% if (post.excerpt){
@@ -54,7 +61,7 @@
       <% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height) { %>
 			"image": {
 				"@type": "ImageObject",
-			  "url": "<%= config.url %>/../<%= post.eyeCatchImage %>",
+			  "url": "<%= prefix %><%= post.eyeCatchImage %>",
 				"width" : "<%= post.eyeCatchImageProperty.width %>",
 				"height" : "<%= post.eyeCatchImageProperty.height %>"
 			},
@@ -82,13 +89,6 @@
 			}
 		}
 	</script>
-  <% var locale = config.locale;
-     var lang = config.language;
-     var prefix = config.url + '/..';
-     if (lang !== 'en') {
-      prefix = prefix + '/..';
-     }
-  %>
 	<% if (cssTxt != ""){ %>
 	<style amp-custom>
 		<%- cssTxt %>
