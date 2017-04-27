@@ -120,16 +120,6 @@
             "eventLabel": "header click logo"
           } 
         },
-        "trackClickOnHeaderFeatures": {
-          "selector": "#header-features",
-          "on": "click",
-          "request": "event",
-          "vars": {
-            "eventCategory": "header",
-            "eventAction": "click",
-            "eventLabel": "header click features"
-          } 
-        },
         "trackClickOnHeaderPricing": {
           "selector": "#header-pricing",
           "on": "click",
@@ -139,16 +129,6 @@
             "eventAction": "click",
             "eventLabel": "header click pricing"
           }
-        },
-        "trackClickOnHeaderClients": {
-          "selector": "#header-clients",
-          "on": "click",
-          "request": "event",
-          "vars": {
-            "eventCategory": "header",
-            "eventAction": "click",
-            "eventLabel": "header click clients"
-          } 
         },
         "trackClickOnHeaderContact": {
           "selector": "#header-contact",
@@ -190,14 +170,14 @@
             "eventLabel": "footer click hello@minsh.com"
           } 
         },
-        "trackClickOnFooterFeatures": {
-          "selector": "#footer-features",
+        "trackClickOnFooterHome": {
+          "selector": "#footer-home",
           "on": "click",
           "request": "event",
           "vars": {
             "eventCategory": "footer",
             "eventAction": "click",
-            "eventLabel": "footer click features"
+            "eventLabel": "footer click home"
           } 
         },
         "trackClickOnFooterPricing": {
@@ -208,16 +188,6 @@
             "eventCategory": "footer",
             "eventAction": "click",
             "eventLabel": "footer click pricing"
-          } 
-        },
-        "trackClickOnFooterClients": {
-          "selector": "#footer-clients",
-          "on": "click",
-          "request": "event",
-          "vars": {
-            "eventCategory": "footer",
-            "eventAction": "click",
-            "eventLabel": "footer click clients"
           } 
         },
         "trackClickOnFooterContact": {
@@ -238,16 +208,6 @@
             "eventCategory": "footer",
             "eventAction": "click",
             "eventLabel": "footer click about"
-          } 
-        },
-        "trackClickOnFooterPR": {
-          "selector": "#footer-pr",
-          "on": "click",
-          "request": "event",
-          "vars": {
-            "eventCategory": "footer",
-            "eventAction": "click",
-            "eventLabel": "footer click PR"
           } 
         },
         "trackClickOnFooterCommunityBuilding": {
@@ -300,7 +260,6 @@
       <nav id="small-nav" role="navigation" class="blue-bg header navbar-fixed-top visible-lg-block">
         <div class="logo">
           <a id="header-logo" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/">
-            <amp-img src="../../images/minsh_letters_<%= lang %>.png" width="97" height="30"></amp-img>
           </a>
         </div>
         <ul class="nav nav-pills navbar-right">
@@ -309,13 +268,7 @@
           </li>
           <!-- pills -->
           <li class="pill hidden-xs">
-            <a id="header-features" class="white-text" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
-          </li>
-          <li class="pill hidden-xs">
             <a id="header-pricing" class="white-text" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
-          </li>
-          <li class="pill hidden-xs">
-            <a id="header-clients" class="white-text" href="<%= prefix %>/<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
             <a id="header-contact" class="white-text" href="<%= prefix %>/<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
@@ -411,19 +364,16 @@
         <ul>
           <h3><%= locale['Product'][lang] %></h3>
           <li>
-            <a id="footer-features" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/#<%= locale['featuresUrl'][lang] %>"><%= locale['Features'][lang] %></a>
+            <a id="footer-home" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>"><%= locale['Home'][lang] %></a>
           </li>
           <li>
             <a id="footer-pricing" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
-          </li>
-          <li>
-            <a id="footer-clients" href="<%= prefix %>/<%= locale['clientsUrl'][lang] %>.html"><%= locale['Clients'][lang] %></a>
           </li>
         </ul>
         <ul>
           <h3><%= locale['Resources'][lang] %></h3>
           <li><a id="footer-community" href="<%= prefix %>/<%= locale['communityBuildingUrl'][lang] %>"><%= locale['Community building'][lang] %></a></li>
-          <li><a id="footer-using" href="<%= prefix %>/<%= locale['usingYourAppUrl'][lang] %>"><%= locale['Using your Minsh app'][lang] %></a></li>
+          <li><a id="footer-using" href="<%= prefix %>/<%= locale['usingYourAppUrl'][lang] %>"><%= locale['Minsh FAQ'][lang] %></a></li>
           <li><a id="footer-news" href="<%= prefix %>/<%= locale['newsUrl'][lang] %>"><%= locale['Minsh news'][lang] %></a></li>
         </ul>
         <ul>
@@ -433,9 +383,6 @@
           </li>
           <li>
             <a id="footer-contact" href="<%= prefix %>/<%= locale['contactUrl'][lang] %>.html"><%= locale['Contact'][lang] %></a>
-          </li>
-          <li>
-            <a id="footer-pr" href="<%= prefix %>/<%= locale['PRUrl'][lang] %>"><%= locale['Press Release'][lang] %></a>
           </li>
         </ul>
         <ul>
