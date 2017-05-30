@@ -120,6 +120,16 @@
             "eventLabel": "header click logo"
           } 
         },
+        "trackClickOnHeaderHome": {
+          "selector": "#header-home",
+          "on": "click",
+          "request": "event",
+          "vars": {
+            "eventCategory": "header",
+            "eventAction": "click",
+            "eventLabel": "header click home"
+          } 
+        },
         "trackClickOnHeaderPricing": {
           "selector": "#header-pricing",
           "on": "click",
@@ -268,6 +278,9 @@
           </li>
           <!-- pills -->
           <li class="pill hidden-xs">
+          <a id="header-home" class="white-text" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>/"><%= locale['Home'][lang] %></a>
+          </li>
+          <li class="pill hidden-xs">
             <a id="header-pricing" class="white-text" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
           </li>
           <li class="pill hidden-xs">
@@ -307,49 +320,7 @@
 		  	
         </section>
 
-		    <aside id="sidebar">
-          <% if (post.tags.length) { %>
-          <div class="widget-wrap">
-            <div class="widget">
-              <div class="widget-header">
-                <h3 class="widget-title"><%- locale['Article topics'][lang] %></h3>
-              </div>
-              <div class="widget-content">
-                <div class="font-normal widget-subtitle">
-                  <ul class="tag-list">
-                    <% post.tags.each(function(tag){ %>
-                    <li class="tag-list-item">
-                      <a class="tag-list-link" href="<%= config.url %>/<%= tag.path %>">
-                        <%= tag.name %>
-                      </a>
-                    </li>
-                    <% }) %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <% } %>
-          <div class="widget-wrap">
-            <div class="widget ad">
-              <div class="widget-content">
-                <div class="widget-subtitle">
-                   <%- locale['Get your dedicated messaging app for your'][lang] %> <%= locale['community'][lang] %>
-                </div>
-                <a id="blog-learn-more" class="text-right" href="<%= locale['homeUrl'][lang] %>">
-                  <button class="get-started-button">
-                    <span class="ad-button-text">
-                      <%= locale['learn more'][lang] %>
-                    </span>
-                  </button>
-                </a> 
-              </div>
-            </div>
-          </div>
-        </aside>
-		  	
 		</div>
-
     <div class="footer">
       <div class="inner">
         <ul>
