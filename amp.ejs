@@ -299,22 +299,36 @@
 		    	
 				<!-- entry title -->
 				<header class="article-header">
-          <h3><a href="../"><%= config.title %></a></h3>
-					<% if (post.link){ %>
-					  <h1 itemprop="name" class="entry-title">
-					    <a class="article-title" href="<%- post.link %>" target="_blank" itemprop="url"><%= post.title %></a>
-					  </h1>
-					<% } else if (post.title){ %>
-					  <h1 class="article-title entry-title" itemprop="name">
-					    <%= post.title %>
-					  </h1>
-					<% } %>
-				</header>
-				
-				<!-- entry content -->
-			    <div class="entry-content ecp">
-			  		<%- content %>
-			  	</div>
+          <% /* display back link to index */ %>
+          <p><a href="../"><h3><%= config.title %></h3></a></p>
+
+          <% if (post.title){ %>
+            <h1 class="article-title entry-title" itemprop="name">
+              <%= post.title %>
+            </h1>
+          <% } %>
+          <div class="author-date">
+            <% if (post.author && config.authors[post.author]) {
+              var authorHtml = config.authors[post.author].name;
+              if (config.authors[post.author].link) { 
+                authorHtml = '<a href="' + config.authors[post.author].link + '">' + authorHtml + '</a>';
+              } %>
+              By <%- authorHtml %>
+            <% } %>
+
+            <% if (post.upd) { %>
+              <br/>
+              <%= config.locale['Last updated'][config.language] %>: <%= new Date(post.upd).toDateString() %>
+            <% } else if (post.date) { %>
+              <br/>
+              <%= config.locale['Published'][config.language] %>: <%= new Date(post.date).toDateString() %>
+            <% } %>
+          </div>
+        </header>
+        <!-- entry content -->
+        <div class="entry-content ecp">
+			  	<%- content %>
+			  </div>
 				
 		  	</article>
 		  	
