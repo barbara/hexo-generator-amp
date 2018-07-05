@@ -335,21 +335,25 @@
         </section>
 
 		</div>
+    
     <div class="footer">
       <div class="inner">
         <ul>
-          <h3>Minsh Apps</h3>
-          <li>© Minsh 2016</li>
+          <h3><%= locale['Industries'][lang] %></h3>
           <li>
-            <a id="footer-hello" href="mailto:hello@minsh.com">
-              <i class="fa fa-envelope"></i> hello@minsh.com
-            </a>
+            <a href="<%= locale['homeUrl'][lang] %>"><%= locale['Communities'][lang] %></a>
+          </li>
+          <li>
+          <a href="<%= prefix %>/<%= locale['eventAppUrl'][lang] %>.html"><%= locale['Events'][lang] %></a>
+          </li>
+          <li>
+          <a href="<%= prefix %>/<%= locale['motorsportsUrl'][lang] %>.html"><%= locale['Motorsports'][lang] %></a>
           </li>
         </ul>
         <ul>
           <h3><%= locale['Product'][lang] %></h3>
           <li>
-            <a id="footer-home" href="<%= prefix %><%= lang !== 'en' ? ('/' + lang) : '' %>"><%= locale['Home'][lang] %></a>
+            <a id="footer-home" href="<%= locale['homeUrl'][lang] %>"><%= locale['Home'][lang] %></a>
           </li>
           <li>
             <a id="footer-pricing" href="<%= prefix %>/<%= locale['pricingUrl'][lang] %>.html"><%= locale['Pricing'][lang] %></a>
@@ -357,9 +361,8 @@
         </ul>
         <ul>
           <h3><%= locale['Resources'][lang] %></h3>
-          <li><a id="footer-community" href="<%= prefix %>/<%= locale['communityBuildingUrl'][lang] %>"><%= locale['Community building'][lang] %></a></li>
-          <li><a id="footer-using" href="<%= prefix %>/<%= locale['usingYourAppUrlAbs'][lang] %>"><%= locale['Minsh FAQ'][lang] %></a></li>
-          <li><a id="footer-news" href="<%= prefix %>/<%= locale['newsUrl'][lang] %>"><%= locale['Minsh news'][lang] %></a></li>
+          <li><a id="footer-using" href="<%= prefix %>/<%= locale['usingYourAppUrlAbs'][lang] %>"><%= locale['Support'][lang] %></a></li>
+          <li><a id="footer-news" href="<%= prefix %>/<%= locale['blogUrl'][lang] %>"><%= locale['Minsh news'][lang] %></a></li>
         </ul>
         <ul>
           <h3><%= locale['About'][lang] %></h3>
@@ -378,9 +381,7 @@
           <li>
             <a href="<%= locale['homeUrl']['fr'] %>">FR</a>
           </li>
-          <li>
-            <a href="https://minsh.com/pt_BR">PT(BR)</a>
-          </li>
+          <li>© Minsh 2008-2018</li>
         </ul>
 			</div>
 		</div>
